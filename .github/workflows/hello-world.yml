@@ -7,4 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello world!!!1!"
+      - run: pwd; ls
+      - run: ls ${{ github.workspace }}
       - run: make hello
