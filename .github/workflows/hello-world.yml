@@ -5,9 +5,11 @@ on:
 jobs:
   hello-world:
     runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - run: echo "Hello world!!!1!"
-      - uses: actions/checkout@${{ github.head_ref || github.ref_name }}
+      - uses: actions/checkout@$BRANCH_NAME
       - run: pwd; ls
       - run: ls ${{ github.workspace }}
       - run: make hello
