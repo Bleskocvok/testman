@@ -1,5 +1,7 @@
 #!/bin/bash
 
+printf '\033[32mNumbers\n'
+
 printf '\n'
 
 for i in $(seq 10); do
