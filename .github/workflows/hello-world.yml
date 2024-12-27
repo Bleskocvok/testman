@@ -12,3 +12,8 @@ jobs:
       - run: ls ${{ github.workspace }}
       - run: make hello
       - run: ./spin
+  try-coverage:
+    runs-on: ubuntu-latest
+        steps:
+          - run: echo "Hello world!!!1!"
+          - run: lcov
