@@ -14,6 +14,6 @@ jobs:
       - run: ./spin
   try-coverage:
     runs-on: ubuntu-latest
-        steps:
-          - run: echo "Hello world!!!1!"
-          - run: lcov
+    steps:
+      - run: echo "Hello world!!!1!"
+      - run: lcov
