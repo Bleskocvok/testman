@@ -29,3 +29,4 @@ jobs:
           filename: coverage
           label: Coverage
           message: 100%, yee haaw 🤠
+          color: cc3534
