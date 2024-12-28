@@ -12,8 +12,20 @@ jobs:
       - run: ls ${{ github.workspace }}
       - run: make hello
       - run: ./spin
+
   try-coverage:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello world!!!1!"
-      - run: lcov
+
+  build-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building badge…"
+      - name: Build-A-Badge
+        uses: peterrhodesdev/build-a-badge@v1.3.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filename: coverage
+          label: Coverage
+          message: 100%, yee haaw 🤠
