@@ -1,0 +1,14 @@
+name: Hello Win
+run-name: ${{ github.actor }} is testing stuff
+on:
+  - push
+jobs:
+  hello-win:
+    runs-on: windows-latest
+    steps:
+      - run: windres
+
+  another-try:
+    runs-on: windows-latest
+    steps:
+      - run: windres.exe
