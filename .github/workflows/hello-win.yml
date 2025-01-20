@@ -6,9 +6,9 @@ jobs:
   hello-win:
     runs-on: windows-latest
     steps:
-      - run: windres
+      - run: windres -V
 
   another-try:
     runs-on: windows-latest
     steps:
-      - run: windres.exe
+      - run: windres.exe -V
