@@ -19,10 +19,13 @@ def main():
 
     auth = Auth.Token(token)
 
-    day_ago = datetime.now(timezone.utc) - timedelta(days=1)
+    now = datetime.now()
+    utc_now = datetime.now(timezone.utc)
+    day_ago = utc_now - timedelta(days=1)
     today: date = datetime.today().date()
     print(f"Date: {today}")
-    print(f"Timezone: {day_ago.tzinfo}")
+    print(f"Time: {now.time()} {now.tzinfo}")
+    print(f"{utc_now.tzinfo} Time: {utc_now.time()} {utc_now.tzinfo}")
 
     total_priv = 0
     total_pub = 0
