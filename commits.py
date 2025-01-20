@@ -14,7 +14,7 @@ def is_on_day(commit: Commit, day: date):
 
 
 def main():
-    token = os.getenv("GITHUB_PAT")
+    token = os.getenv("GH_PAT")
     assert token
 
     auth = Auth.Token(token)

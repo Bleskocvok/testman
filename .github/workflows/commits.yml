@@ -1,0 +1,22 @@
+name: Commit reminder
+run-name: Running to count today's commits for ${{ github.actor }}
+on:
+  schedule:
+    - cron: */2 * * * *
+
+jobs:
+  count-today-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Run commit counter
+        env: GH_PAT: ${{ secrets.PAT }}
+        run: python3 ./commits.py
