@@ -2,7 +2,7 @@ name: Commit reminder
 run-name: Running to count today's commits for ${{ github.actor }}
 on:
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '0 19,21 * * *'
 
 jobs:
   count-today-commits:
