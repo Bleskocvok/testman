@@ -7,8 +7,4 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: windres -V
-
-  another-try:
-    runs-on: windows-latest
-    steps:
       - run: windres.exe -V

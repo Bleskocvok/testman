@@ -13,11 +13,6 @@ jobs:
       - run: make hello
       - run: ./spin
 
-  try-coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Hello world!!!1!"
-
   build-badge:
     runs-on: ubuntu-latest
     steps:
