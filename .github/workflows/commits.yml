@@ -3,7 +3,7 @@ run-name: Running to count today's commits for ${{ github.actor }}
 on:
   # - push
   schedule:
-    - cron: '*/2 18 * * *'
+    - cron: '*/2 * * * *'
 
 jobs:
   count-today-commits:
