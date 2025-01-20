@@ -51,7 +51,7 @@ def main(argv) -> int:
         input_data = sys.stdin.read()
 
     # kill the process if it gets stuck for 10s
-    alarm(10)
+    alarm(30)
 
     if where == "user":
         send_to(dc_id, input_data, token, lambda cl, i: cl.fetch_user(i))
