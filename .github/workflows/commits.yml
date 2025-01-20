@@ -18,5 +18,6 @@ jobs:
         run: python3 -m pip install -r requirements.txt
 
       - name: Run commit counter
-        env: GH_PAT: ${{ secrets.PAT }}
+        env:
+          GH_PAT: ${{ secrets.PAT }}
         run: python3 ./commits.py
