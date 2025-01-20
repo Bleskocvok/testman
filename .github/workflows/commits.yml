@@ -21,4 +21,5 @@ jobs:
       - name: Run commit counter
         env:
           GH_PAT: ${{ secrets.PAT }}
-        run: python3 ./commits.py
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: python3 ./commits.py || python3 ./send_dc chan ${{ secrets.CHANNEL_ID }} <<< "No commits today! Quick, make some!"
