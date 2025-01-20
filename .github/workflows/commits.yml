@@ -22,4 +22,4 @@ jobs:
         env:
           GH_PAT: ${{ secrets.PAT }}
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-        run: python3 ./commits.py || python3 ./send_dc chan ${{ secrets.CHANNEL_ID }} <<< "No commits today! Quick, make some!"
+        run: python3 ./commits.py || python3 ./send_dc chan ${{ secrets.CHANNEL_ID }} <<< "(TEST) No commits today! Quick, make some!"
