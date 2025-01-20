@@ -10,8 +10,7 @@ from datetime import date, datetime, timezone, timedelta
 def is_on_day(commit: Commit, day: date):
     # Make sure it's the correct type of object.
     commit_date: date = commit.commit.author.date.date()
-    # return commit_date == day
-    return False
+    return commit_date == day
 
 
 def main():
