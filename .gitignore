@@ -1,0 +1,5 @@
+# Secrets and environment variables.
+/.env
+
+# Virtual environments.
+/.venv/
