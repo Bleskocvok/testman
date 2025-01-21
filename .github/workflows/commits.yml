@@ -23,3 +23,36 @@ jobs:
           GH_PAT: ${{ secrets.PAT }}
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         run: python3 ./commits.py || python3 ./send_dc.py chan ${{ secrets.CHANNEL_ID }} <<< "No commits today! Quick, grab a keyboard!"
+
+
+  # Whatever, it's easiest to create a badge this way, re-running the whole
+  # thing.
+  commit-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Run commit counter
+        env:
+          GH_PAT: ${{ secrets.PAT }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: python3 ./commits.py | tail -n1 | cut -f3 > count
+
+      - name: Put commit count into an environment variable
+        run: echo "COMMITS=$(cat count)" >> $GITHUB_ENV
+
+      - name: Build badge
+        uses: peterrhodesdev/build-a-badge@v1.3.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filename: commits
+          label: Today's commits
+          message: ${{ env.COMMITS }}
+          color: "4078c0"
