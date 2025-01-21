@@ -43,7 +43,7 @@ jobs:
         env:
           GH_PAT: ${{ secrets.PAT }}
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-        run: python3 ./commits.py | tail -n1 | cut -f3 | tee count
+        run: python3 ./commits.py | tail -n1 | cut -d' ' -f3 | tee count
 
       - name: Put commit count into an environment variable
         run: echo "COMMITS=$(cat count)" >> $GITHUB_ENV
