@@ -55,4 +55,4 @@ jobs:
           filename: commits
           label: Today's commits
           message: ${{ env.COMMITS }}
-          color: "4078c0"
+          color: green
