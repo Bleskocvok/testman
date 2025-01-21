@@ -34,7 +34,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: '3.12'
 
       - name: Install dependencies
         run: python3 -m pip install -r requirements.txt
@@ -46,13 +46,13 @@ jobs:
         run: python3 ./commits.py | tail -n1 | cut -d' ' -f3 | tee count
 
       - name: Put commit count into an environment variable
-        run: echo 'COMMITS=$(cat count)' >> $GITHUB_ENV
+        run: echo "COMMITS=$(cat count)" >> $GITHUB_ENV
 
       - name: Build badge
         uses: peterrhodesdev/build-a-badge@v1.3.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filename: commits
-          label: Today's commits
+          label: Commits today
           message: hell
           color: green

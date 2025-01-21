@@ -31,10 +31,6 @@ def main():
     total_pub = 0
     total_today_commits = 0
 
-    # TODO: REMOVE!!!!!
-    print(13)
-    sys.exit(0)
-
     with Github(auth=auth) as g:
         for repo in g.get_user().get_repos():
             err: None | str = None
