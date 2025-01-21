@@ -37,7 +37,8 @@ def main():
             today_commits: list[Commit] = []
 
             try:
-                # This should return commits only from the default branch.
+                # This should return commits only from the default branch,
+                # which is what we want.
                 commits = repo.get_commits(since=day_ago)
                 latest = itertools.takewhile(lambda c : is_on_day(c, today), commits)
                 today_commits = list(latest)
@@ -60,7 +61,7 @@ def main():
                         print(f"  | {c.commit.message}")
 
     print(f"\nRepositories checked: {total_priv + total_pub} (public={total_pub}, private={total_priv})")
-    print(f"Today commit count: {total_today_commits}")
+    print(f"Today commits: {total_today_commits}")
 
     if total_today_commits > 0:
         sys.exit(0)
