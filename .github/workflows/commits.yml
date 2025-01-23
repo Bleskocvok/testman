@@ -54,5 +54,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           filename: commits
           label: Commits today
-          message: hell
+          message: ${{ env.COMMITS }}
           color: green
