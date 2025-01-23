@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@main
       - run: pwd; ls
       - run: ls ${{ github.workspace }}
+      - run: echo github.ref=${{ github.ref }}
       - run: make hello
       - run: ./spin
 
