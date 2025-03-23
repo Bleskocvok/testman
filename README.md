@@ -1,6 +1,6 @@
 # testman
 
-Testing repository.
+Testing repository. No need to look here.
 
 ![Today commits](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wiki/Bleskocvok/testman/commits.md)
 
