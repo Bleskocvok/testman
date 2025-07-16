@@ -8,3 +8,7 @@ Testing repository. No need to look here.
 ![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wiki/Bleskocvok/testman/coverage.md)
 
 Update: `...`
+
+# todo
+
+- gitlab maybe?
