@@ -12,6 +12,8 @@ import (
 	"time"
 )
 
+const DateFormat = "2006-01-02"
+
 type Changes struct {
 	Added int
 	Removed int
@@ -80,12 +82,17 @@ func printDayChanges(author, day string) (int, int) {
 func printLongerPeriod(author string, days int) {
 	added, removed := 0, 0
 	for i := range days {
-		day := time.Now().AddDate(0, 0, -i).Format("2006-01-02")
+		day := time.Now().AddDate(0, 0, -i).Format(DateFormat)
 		a, r := printDayChanges(author, day)
 		added += a
 		removed += r
 	}
 	printNumStat("Total:", added, removed)
+}
+
+func valiDate(str string) bool {
+	_, e := time.Parse(DateFormat, str)
+	return e == nil
 }
 
 func main() {
@@ -104,13 +111,12 @@ func main() {
 
 	fmt.Println("Author: " + *author)
 
-	fmt := "2006-01-02"
 	switch *day {
 		case "today":
-			printDayChanges(*author, time.Now().Format(fmt))
+			printDayChanges(*author, time.Now().Format(DateFormat))
 
 		case "yesterday":
-			printDayChanges(*author, time.Now().AddDate(0, 0, -1).Format(fmt))
+			printDayChanges(*author, time.Now().AddDate(0, 0, -1).Format(DateFormat))
 
 		case "week":
 			printLongerPeriod(*author, 7)
@@ -122,6 +128,9 @@ func main() {
 			printLongerPeriod(*author, 365)
 
 		default:
+			if !valiDate(*day) {
+				log.Fatalln("Invalid date: ", *day)
+			}
 			printDayChanges(*author, *day)
 	}
 }
