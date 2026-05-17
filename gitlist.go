@@ -55,6 +55,10 @@ func getChanges(author string, day string) ([]Changes, error) {
 	return changes, nil
 }
 
+func printNumStat(prefix string, added, removed int) {
+	fmt.Printf("%s +%4d -%4d = %4d\n", prefix, added, removed, added - removed)
+}
+
 func printDayChanges(author, day string) (int, int) {
 	changes, err := getChanges(author, day)
 
@@ -67,16 +71,21 @@ func printDayChanges(author, day string) (int, int) {
 		totalAdded += ch.Added
 		totalRemoved += ch.Removed
 	}
-	fmt.Println("Day:", day, " +", totalAdded, "-", totalRemoved, "=", totalAdded - totalRemoved)
+// 	fmt.Println("Day:", day, " +", totalAdded, "-", totalRemoved, "=", totalAdded - totalRemoved)
+	printNumStat("Day: " + day, totalAdded, totalRemoved)
 
 	return totalAdded, totalRemoved
 }
 
 func printLongerPeriod(author string, days int) {
+	added, removed := 0, 0
 	for i := range days {
 		day := time.Now().AddDate(0, 0, -i).Format("2006-01-02")
-		printDayChanges(author, day)
+		a, r := printDayChanges(author, day)
+		added += a
+		removed += r
 	}
+	printNumStat("Total:", added, removed)
 }
 
 func main() {
