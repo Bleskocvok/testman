@@ -96,7 +96,7 @@ func valiDate(str string) bool {
 }
 
 func main() {
-	author := flag.String("email", "", "Email of author")
+	author := flag.String("author", "", "Email of author")
 	day := flag.String("time", "", "Optional time. Can be YYYY-MM-DD, today, yesterday, week, month.")
 
 	flag.Parse()
