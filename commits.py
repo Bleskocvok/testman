@@ -1,11 +1,12 @@
 from github import Github, Auth, GithubException
 from github.Commit import Commit
 
+from dotenv import load_dotenv
+
 import os
 import sys
 import itertools
 from datetime import date, datetime, timezone, timedelta
-
 
 def is_on_day(commit: Commit, day: date):
     # Make sure it's the correct type of object.
@@ -14,6 +15,8 @@ def is_on_day(commit: Commit, day: date):
 
 
 def main():
+    load_dotenv()
+
     token = os.getenv("GH_PAT")
     assert token
 
