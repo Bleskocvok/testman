@@ -55,9 +55,33 @@ func getChanges(author string, day string) ([]Changes, error) {
 	return changes, nil
 }
 
+func printDayChanges(author, day string) (int, int) {
+	changes, err := getChanges(author, day)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	totalAdded, totalRemoved := 0, 0
+	for _, ch := range changes {
+		totalAdded += ch.Added
+		totalRemoved += ch.Removed
+	}
+	fmt.Println("Day:", day, " +", totalAdded, "-", totalRemoved, "=", totalAdded - totalRemoved)
+
+	return totalAdded, totalRemoved
+}
+
+func printLongerPeriod(author string, days int) {
+	for i := range days {
+		day := time.Now().AddDate(0, 0, -i).Format("2006-01-02")
+		printDayChanges(author, day)
+	}
+}
+
 func main() {
 	author := flag.String("email", "", "Email of author")
-	day := flag.String("day", "", "Optional time. Can be YYYY-MM-DD, today, yesterday, week, month.")
+	day := flag.String("time", "", "Optional time. Can be YYYY-MM-DD, today, yesterday, week, month.")
 
 	flag.Parse()
 
@@ -69,32 +93,26 @@ func main() {
 		*day = "today"
 	}
 
-	if *day == "" {
-		*day = "today"
-	}
-
-	if *day == "today" {
-		fmt.Println("SADaposkpjdsakldjhasdklj")
-		*day = time.Now().Format("2006-01-02")
-	}
-
-	if *day == "yesterday" {
-		*day = time.Now().AddDate(0, 0, -1).Format("2006-01-02")
-	}
-
 	fmt.Println("Author: " + *author)
-	fmt.Println("Day: " + *day)
 
-	changes, err := getChanges(*author, *day)
+	fmt := "2006-01-02"
+	switch *day {
+		case "today":
+			printDayChanges(*author, time.Now().Format(fmt))
 
-	if err != nil {
-		log.Fatalln(err)
+		case "yesterday":
+			printDayChanges(*author, time.Now().AddDate(0, 0, -1).Format(fmt))
+
+		case "week":
+			printLongerPeriod(*author, 7)
+
+		case "month":
+			printLongerPeriod(*author, 30)
+
+		case "year":
+			printLongerPeriod(*author, 365)
+
+		default:
+			printDayChanges(*author, *day)
 	}
-
-	totalAdded, totalRemoved := 0, 0
-	for _, ch := range changes {
-		totalAdded += ch.Added
-		totalRemoved += ch.Removed
-	}
-	fmt.Println("+", totalAdded, "-", totalRemoved, "=", totalAdded - totalRemoved)
 }
